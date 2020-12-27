@@ -1,17 +1,19 @@
 package ru.job4j.carmarket.model;
 
+
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
-@Table(name = "j_brand")
-public class Brand {
+@Table(name = "j_drivers_license")
+public class License {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
+
+    private Driver driver;
 
     public int getId() {
         return id;
@@ -29,18 +31,11 @@ public class Brand {
         this.name = name;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Brand)) return false;
-        Brand brand = (Brand) o;
-        return getId() == brand.getId();
+    public Driver getDriver() {
+        return driver;
     }
 
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(getId());
+    public void setDriver(Driver driver) {
+        this.driver = driver;
     }
-
 }

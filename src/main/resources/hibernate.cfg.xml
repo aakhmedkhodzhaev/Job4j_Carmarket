@@ -16,5 +16,9 @@
         <mapping class="ru.job4j.carmarket.model.Car"/>
         <mapping class="ru.job4j.carmarket.model.Model"/>
         <mapping class="ru.job4j.carmarket.model.Brand"/>
+        <mapping class="ru.job4j.carmarket.model.Engine"/>
+        <mapping class="ru.job4j.carmarket.model.Driver"/>
+
+        <mapping resource="License.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
