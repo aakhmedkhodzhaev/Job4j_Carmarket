@@ -13,11 +13,13 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</property>
 
+        <mapping class="ru.job4j.carmarket.model.User"/>
         <mapping class="ru.job4j.carmarket.model.Car"/>
         <mapping class="ru.job4j.carmarket.model.Model"/>
         <mapping class="ru.job4j.carmarket.model.Brand"/>
         <mapping class="ru.job4j.carmarket.model.Engine"/>
         <mapping class="ru.job4j.carmarket.model.Driver"/>
+        <mapping class="ru.job4j.carmarket.model.Market"/>
 
         <mapping resource="License.hbm.xml"/>
     </session-factory>
