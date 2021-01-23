@@ -9,16 +9,24 @@ public class Market {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "description")
     private String description;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private User user;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "car_id")
     private Car car;
 
+    @Column(name = "photo_name")
     private String photoname;
 
     public int getId() {

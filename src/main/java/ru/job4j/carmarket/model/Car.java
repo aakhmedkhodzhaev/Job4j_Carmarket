@@ -9,9 +9,12 @@ import java.util.Set;
 @Table(name = "j_car")
 public class Car {
 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
+    @Column(name = "name")
     private String name;
 
     @ManyToOne
@@ -22,7 +25,7 @@ public class Car {
     @JoinColumn(name = "model_id", foreignKey = @ForeignKey(name = "j_model_id_fk"))
     private Model model;
 
-    private Set<Driver> drivers = new HashSet<>();
+ // private Set<Driver> drivers = new HashSet<>();
 
     public int getId() {
         return id;
@@ -48,7 +51,7 @@ public class Car {
         this.engine = engine;
     }
 
-
+/*
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "j_history_owner", joinColumns = {
             @JoinColumn(name = "driver_id", nullable = false, updatable = false)},
@@ -62,7 +65,7 @@ public class Car {
         this.drivers = drivers;
     }
 
-    // @OneToOne(cascade = CascadeType.ALL, mappedBy = "j_car")
+    // @OneToOne(cascade = CascadeType.ALL, mappedBy = "j_car")*/
     public Model getModel() {
         return model;
     }
