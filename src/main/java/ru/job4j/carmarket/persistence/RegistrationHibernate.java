@@ -21,7 +21,7 @@ public class RegistrationHibernate implements Registration, AutoCloseable {
 
     private final static RegistrationHibernate INSTANCE = new RegistrationHibernate();
 
-    private final static RegistrationHibernate getInstance() {
+    public final static RegistrationHibernate getInstance() {
         return INSTANCE;
     }
 
@@ -150,7 +150,7 @@ public class RegistrationHibernate implements Registration, AutoCloseable {
         StandardServiceRegistryBuilder.destroy(registry);
     }
 
-    public static void main(String[] args) {
+/*  public static void main(String[] args) {
         User user = new User();
         user.setEmail("root@mail.su");
         user.setName("Maxim");
@@ -161,6 +161,6 @@ public class RegistrationHibernate implements Registration, AutoCloseable {
         user.getName();
         user.getPassword();
 
-    }
+    }*/
 
 }
