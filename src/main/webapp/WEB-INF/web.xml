@@ -4,13 +4,13 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-    <servlet>
-        <servlet-name>InfoServlet</servlet-name>
-        <servlet-class>ru.job4j.carmarket.servlet.InfoServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>InfoServlet</servlet-name>
-        <url-pattern>/info.do</url-pattern>
-    </servlet-mapping>
-
+    <!--    <servlet>
+            <servlet-name>InfoServlet</servlet-name>
+            <servlet-class>ru.job4j.carmarket.servlet.InfoServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>InfoServlet</servlet-name>
+            <url-pattern>/info.do</url-pattern>
+        </servlet-mapping>
+    -->
 </web-app>

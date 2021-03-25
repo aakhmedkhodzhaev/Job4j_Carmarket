@@ -1,6 +1,8 @@
 package ru.job4j.carmarket.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -25,7 +27,16 @@ public class Car {
     @JoinColumn(name = "model_id", foreignKey = @ForeignKey(name = "j_model_id_fk"))
     private Model model;
 
- // private Set<Driver> drivers = new HashSet<>();
+    @Column(name = "price")
+    private String price;
+
+    @Column(name = "years")
+    private LocalDate years;
+
+    @Column(name = "public_date")
+    private LocalDateTime public_date;
+
+    // private Set<Driver> drivers = new HashSet<>();
 
     public int getId() {
         return id;
@@ -43,6 +54,30 @@ public class Car {
         this.name = name;
     }
 
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public LocalDate getYears() {
+        return years;
+    }
+
+    public void setYears(LocalDate years) {
+        this.years = years;
+    }
+
+    public LocalDateTime getPublic_date() {
+        return public_date;
+    }
+
+    public void setPublic_date(LocalDateTime public_date) {
+        this.public_date = public_date;
+    }
+
     public Engine getEngine() {
         return engine;
     }
@@ -51,21 +86,21 @@ public class Car {
         this.engine = engine;
     }
 
-/*
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "j_history_owner", joinColumns = {
-            @JoinColumn(name = "driver_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "car_id",
-                    nullable = false, updatable = false)})
-    public Set<Driver> getDrivers() {
-        return drivers;
-    }
+    /*
+        @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+        @JoinTable(name = "j_history_owner", joinColumns = {
+                @JoinColumn(name = "driver_id", nullable = false, updatable = false)},
+                inverseJoinColumns = {@JoinColumn(name = "car_id",
+                        nullable = false, updatable = false)})
+        public Set<Driver> getDrivers() {
+            return drivers;
+        }
 
-    public void setDrivers(Set<Driver> drivers) {
-        this.drivers = drivers;
-    }
+        public void setDrivers(Set<Driver> drivers) {
+            this.drivers = drivers;
+        }
 
-    // @OneToOne(cascade = CascadeType.ALL, mappedBy = "j_car")*/
+        // @OneToOne(cascade = CascadeType.ALL, mappedBy = "j_car")*/
     public Model getModel() {
         return model;
     }
