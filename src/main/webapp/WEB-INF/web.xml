@@ -13,4 +13,40 @@
             <url-pattern>/info.do</url-pattern>
         </servlet-mapping>
     -->
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>ru.job4j.carmarket.filter.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+
+
+    <servlet>
+        <servlet-name>AuthController</servlet-name>
+        <servlet-class>ru.job4j.carmarket.servlet.AuthServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AuthController</servlet-name>
+        <url-pattern>/auth.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>InfoController</servlet-name>
+        <servlet-class>ru.job4j.carmarket.servlet.InfoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InfoController</servlet-name>
+        <url-pattern>/info.do</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>RegController</servlet-name>
+        <servlet-class>ru.job4j.carmarket.servlet.RegServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegController</servlet-name>
+        <url-pattern>/reg.do</url-pattern>
+    </servlet-mapping>
+
 </web-app>

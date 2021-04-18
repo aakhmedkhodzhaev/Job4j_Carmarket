@@ -19,14 +19,14 @@ public class RegServlet extends HttpServlet {
         if (user.getName() != null) {
             req.setAttribute("email", RegistrationHibernate.getInstance().findByEmail("email"));
         }
-        req.getRequestDispatcher("req.jsp").forward(req, resp);
+        req.getRequestDispatcher("reg.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email"),
                 name = req.getParameter("name"),
-                password = req.getParameter("");
+                password = req.getParameter("pswd");
 
         req.setCharacterEncoding("UTF-8");
         if (RegistrationHibernate.getInstance().findByEmail("email") == null
