@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <style>
-        #login {
+        #email {
             width: 300px; /* Ширина поля в пикселах */
         }
 
-        #pwd {
+        #password {
             width: 300px; /* Ширина поля в пикселах */
         }
     </style>
@@ -19,11 +19,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
         function validate() {
-            if (document.getElementById("login").value == '') {
+            if (document.getElementById("email").value == '') {
                 alert("Логин не может быть пустым")
                 return false;
             }
-            if (document.getElementById("pwd").value == '') {
+            if (document.getElementById("password").value == '') {
                 alert("Пароль не может быть пустым")
                 return false;
             }
@@ -33,14 +33,14 @@
         function doLogin() {
             if (!validate()) return false;
 
-            console.log(document.getElementById("login").value, document.getElementById("pwd").value);
+            console.log(document.getElementById("email").value, document.getElementById("password").value);
 
             $.ajax("./ajax", {
                     method: "post",
                     data: {
                         command: "login",
-                        login: document.getElementById("login").value,
-                        password: document.getElementById("pwd").value
+                        login: document.getElementById("email").value,
+                        password: document.getElementById("password").value
                     },
                     success: function () {
                         window.location = "advertisement.html";
@@ -65,12 +65,12 @@
     <h2>Авторизация</h2>
     <form>
         <div class="form-group">
-            <label for="login">Логин:</label>
-            <input type="email" class="form-control" id="login" placeholder="Введите логин" name="login">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" placeholder="Введите email" name="email">
         </div>
         <div class="form-group">
-            <label for="pwd">Пароль:</label>
-            <input type="password" class="form-control" id="pwd" placeholder="Введите пароль" name="pswd">
+            <label for="password">Пароль:</label>
+            <input type="password" class="form-control" id="password" placeholder="Введите пароль" name="password">
         </div>
 
         <button type="button" onclick="doLogin();" class="btn btn-primary"
