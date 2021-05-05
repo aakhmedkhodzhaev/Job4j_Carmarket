@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bootstrap Example</title>
+    <title>Car Market | Home</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -10,7 +10,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
 
+
         function doLogout() {
+            window.location = "index.html";
+        }
+
+        /*
+        function doLogout() {
+
             $.ajax("./ajax", {
                     method : "post",
                     data : {
@@ -21,9 +28,9 @@
                     }
                 }
             );
-        }
+        }*/
 
-        function gotoMainPage() {
+            function gotoMainPage() {
             window.location = "index.html";
         }
 
@@ -34,7 +41,7 @@
 
             button.firstChild.data = "qweqwe";
             button.classList.toggle('btn-danger');
-            if(parseInt(button.value, 10) == 0) {
+            if (parseInt(button.value, 10) == 0) {
                 button.innerText = "Выбрать"
                 comboBox.hidden = true;
             } else {
@@ -44,15 +51,16 @@
             edit.hidden = !comboBox.hidden;
             button.value = (parseInt(button.value, 10) + 1) % 2;
         }
+
         function loadCities() {
             $.ajax("./ajax", {
-                    method : "get",
-                    data : {command : "get_cities"},
-                    complete : function(data) {
+                    method: "get",
+                    data: {command: "get_cities"},
+                    complete: function (data) {
                         if (data.responseText.length > 0) {
                             var items = JSON.parse(data.responseText);
                             var result = "";
-                            for (var i = 0; i < items.length; i ++) {
+                            for (var i = 0; i < items.length; i++) {
                                 var item = items[i];
                                 result += "<option>" + item.name + "</option>\n";
                             }
@@ -62,15 +70,16 @@
                 }
             )
         }
+
         function loadTypes() {
             $.ajax("./ajax", {
-                    method : "get",
-                    data : {command : "get_types"},
-                    complete : function(data) {
+                    method: "get",
+                    data: {command: "get_types"},
+                    complete: function (data) {
                         if (data.responseText.length > 0) {
                             var items = JSON.parse(data.responseText);
                             var result = "";
-                            for (var i = 0; i < items.length; i ++) {
+                            for (var i = 0; i < items.length; i++) {
                                 var item = items[i];
                                 result += "<option>" + item.name + "</option>\n";
                             }
@@ -87,14 +96,14 @@
 
             if (cbType.selectedIndex > -1) {
                 $.ajax("./ajax", {
-                        method : "get",
-                        data : {command : "get_models", type : cbType.options[cbType.selectedIndex].text},
-                        complete : function(data) {
+                        method: "get",
+                        data: {command: "get_models", type: cbType.options[cbType.selectedIndex].text},
+                        complete: function (data) {
                             if (data.responseText.length > 0) {
                                 var items = JSON.parse(data.responseText);
 
                                 var result = "";
-                                for (var i = 0; i < items.length; i ++) {
+                                for (var i = 0; i < items.length; i++) {
                                     var item = items[i];
                                     result += "<option>" + item.name + "</option>\n";
                                 }
@@ -104,14 +113,14 @@
                     }
                 )
                 $.ajax("./ajax", {
-                        method : "get",
-                        data : {command : "get_marks", type : cbType.options[cbType.selectedIndex].text},
-                        complete : function(data) {
+                        method: "get",
+                        data: {command: "get_marks", type: cbType.options[cbType.selectedIndex].text},
+                        complete: function (data) {
                             if (data.responseText.length > 0) {
                                 var items = JSON.parse(data.responseText);
 
                                 var result = "";
-                                for (var i = 0; i < items.length; i ++) {
+                                for (var i = 0; i < items.length; i++) {
                                     var item = items[i];
                                     result += "<option>" + item.name + "</option>\n";
                                 }
@@ -121,15 +130,15 @@
                     }
                 )
                 $.ajax("./ajax", {
-                        method : "get",
-                        data : {command : "get_bodies", type : cbType.options[cbType.selectedIndex].text},
-                        complete : function(data) {
+                        method: "get",
+                        data: {command: "get_bodies", type: cbType.options[cbType.selectedIndex].text},
+                        complete: function (data) {
                             if (data.responseText.length > 0) {
                                 var items = JSON.parse(data.responseText);
 
 
                                 var result = "";
-                                for (var i = 0; i < items.length; i ++) {
+                                for (var i = 0; i < items.length; i++) {
                                     var item = items[i];
 
                                     console.log(item);
@@ -211,24 +220,24 @@
 
         function changeInactive(id) {
             $.ajax("/ajax", {
-                method : "post",
-                data : {command : "change_inactive", id : id},
-                success : function() {
+                method: "post",
+                data: {command: "change_inactive", id: id},
+                success: function () {
 //                    showData();
                 }
             });
         }
 
-        function timeConverter(timestamp){
+        function timeConverter(timestamp) {
             var a = new Date(timestamp);
-            var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
             var year = a.getFullYear();
             var month = months[a.getMonth()];
             var date = a.getDate();
             var hour = a.getHours();
             var min = a.getMinutes();
             var sec = a.getSeconds();
-            var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+            var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
             return time;
         }
 
@@ -275,14 +284,14 @@
         function showData() {
 
             $.ajax("./ajax", {
-                method : "get",
-                data : {
-                    command : "get_user_cars"
+                method: "get",
+                data: {
+                    command: "get_user_cars"
                 },
-                complete : function(data) {
+                complete: function (data) {
                     var json = JSON.parse(data.responseText);
                     if (json.data == null) return;
-                    document.getElementById("navbar").text = "CarStore [" + json.login + "]";
+                    document.getElementById("navbar").text = "Car Market | Home [" + json.login + "]";
                     var result = "<thead>\n"
                         + "<tr>\n"
                         + "   <th>№</th>\n"
@@ -300,7 +309,7 @@
                         + "</thead>\n"
                         + "<tbody>\n";
                     var index = 1;
-                    for (var i = 0; i < json.data.length; i ++) {
+                    for (var i = 0; i < json.data.length; i++) {
                         var item = json.data[i];
 
 
@@ -351,7 +360,7 @@
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <!-- Brand -->
-    <a class="navbar-brand" id="navbar" href="#">CarStore</a>
+    <a class="navbar-brand" id="navbar" href="#">Car Market</a>
 
     <!-- Links -->
     <ul class="navbar-nav">
@@ -395,11 +404,12 @@
                                 <td width="100%">
                                     <select class="form-control" id="cbCity" name="cbCity">
                                     </select>
-                                    <input type="text" style="width:100%" id="edCity" name = "edCity" hidden/>
+                                    <input type="text" style="width:100%" id="edCity" name="edCity" hidden/>
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-success" id="City" onclick="btAddSelClick();"
-                                            value="0">Добавить</button>
+                                            value="0">Добавить
+                                    </button>
                                 </td>
                             </tr>
                             <tr>
@@ -409,11 +419,12 @@
                                 <td width="100%">
                                     <select class="form-control" id="cbType" name="sellist1" onchange="changeType();">
                                     </select>
-                                    <input type="text" style="width:100%" id="edType" name = "edType" hidden/>
+                                    <input type="text" style="width:100%" id="edType" name="edType" hidden/>
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-success" id="Type" onclick="btAddSelClick();"
-                                            value="0">Добавить</button>
+                                            value="0">Добавить
+                                    </button>
                                 </td>
                             </tr>
                             <tr>
@@ -423,11 +434,12 @@
                                 <td width="100%">
                                     <select class="form-control" id="cbMark" name="cbMark">
                                     </select>
-                                    <input type="text" style="width:100%" id="edMark" name = "edMark" hidden/>
+                                    <input type="text" style="width:100%" id="edMark" name="edMark" hidden/>
                                 </td>
-                                <td  style="width:100px">
+                                <td style="width:100px">
                                     <button type="button" class="btn btn-success" id="Mark" onclick="btAddSelClick();"
-                                            value="0">Добавить</button>
+                                            value="0">Добавить
+                                    </button>
                                 </td>
                             </tr>
                             <tr>
@@ -437,11 +449,12 @@
                                 <td width="100%">
                                     <select class="form-control" id="cbModel" name="cbModel">
                                     </select>
-                                    <input type="text" style="width:100%" id="edModel" name = "edModel" hidden/>
+                                    <input type="text" style="width:100%" id="edModel" name="edModel" hidden/>
                                 </td>
-                                <td  style="width:100px">
+                                <td style="width:100px">
                                     <button type="button" class="btn btn-success" id="Model" onclick="btAddSelClick();"
-                                            value="0">Добавить</button>
+                                            value="0">Добавить
+                                    </button>
                                 </td>
                             </tr>
                             <tr>
@@ -451,11 +464,12 @@
                                 <td width="100%">
                                     <select class="form-control" id="cbBody" name="cbBody">
                                     </select>
-                                    <input type="text" style="width:100%" id="edBody" name = "edBody" hidden/>
+                                    <input type="text" style="width:100%" id="edBody" name="edBody" hidden/>
                                 </td>
-                                <td  style="width:100px">
+                                <td style="width:100px">
                                     <button type="button" class="btn btn-success" id="Body" onclick="btAddSelClick();"
-                                            value="0">Добавить</button>
+                                            value="0">Добавить
+                                    </button>
                                 </td>
                             </tr>
                             <tr>
@@ -482,7 +496,8 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <input type="number" id="edPrice" name="edPrice" width="70px">
+                                                            <input type="number" id="edPrice" name="edPrice"
+                                                                   width="70px">
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -502,12 +517,14 @@
                                 <td>
                                     <br>
                                     <button type="submit" class="btn btn-primary" style="float:left;
-                                       margin-right:10px" onclick="return validate();">Принять</button>
+                                       margin-right:10px" onclick="return validate();">Принять
+                                    </button>
                                 </td>
                                 <td>
                                     <br>
                                     <button type="button" onclick="doCancel();" class="btn btn-danger"
-                                            style="float:right">Отмена</button>
+                                            style="float:right">Отмена
+                                    </button>
                                 </td>
                             </tr>
                         </table>

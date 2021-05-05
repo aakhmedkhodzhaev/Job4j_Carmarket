@@ -29,7 +29,7 @@ public class RegServlet extends HttpServlet {
                 password = req.getParameter("pswd");
 
         req.setCharacterEncoding("UTF-8");
-        if (RegistrationHibernate.getInstance().findByEmail("email") == null
+        if (RegistrationHibernate.getInstance().findByEmail(email) == null // проверка на наличие уникальности, так же в таблице на данном столбце стоит ограничению по unique (constraint)
                 && name != "" && password != ""
                 && email.length() > 5 && name.length() > 3 && password.length() > 0) {
             RegistrationHibernate.getInstance().save(

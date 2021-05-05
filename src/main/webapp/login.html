@@ -31,7 +31,7 @@
         }
 
         function doLogin() {
-            if (!validate()) return false;
+           /* if (!validate()) return false;
 
             console.log(document.getElementById("email").value, document.getElementById("password").value);
 
@@ -46,11 +46,12 @@
                         window.location = "advertisement.html";
                     }
                 }
-            );
+            );*/
+            window.location = "advertisement.html";
         }
 
         function doCancel() {
-            window.location = "index.html";
+            window.location = "auth.do";
         }
 
         function doRegistration() {
