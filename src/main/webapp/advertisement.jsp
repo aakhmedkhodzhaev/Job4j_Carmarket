@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+<%--
+  Created by IntelliJ IDEA.
+  User: Acer
+  Date: 09.05.2021
+  Time: 23:51
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
     <title>Car Market | Home</title>
@@ -24,7 +31,7 @@
                         command : "logout"
                     },
                     success : function() {
-                        window.location = "index.html";
+                        window.location = "index.jsp";
                     }
                 }
             );

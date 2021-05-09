@@ -90,7 +90,7 @@
             <input type="password" class="form-control" id="pwd2" placeholder="Повторите пароль" name="pswd">
         </div>
 
-        <button type="submit" class="btn btn-primary" style="border-radius:5px; float:left"> <!-- type="button" onclick="doRegistration();"-->
+        <button type="submit" onclick="validate()" class="btn btn-primary" style="border-radius:5px; float:left"> <!-- type="button" onclick="doRegistration();"-->
             Зарегистрировать
         </button>
         <button type="reset" class="btn btn-warning" style="border-radius:5px; float:left; margin-left:10px">

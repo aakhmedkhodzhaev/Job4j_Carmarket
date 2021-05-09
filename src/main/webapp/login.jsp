@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+<%--
+  Created by IntelliJ IDEA.
+  User: Acer
+  Date: 09.05.2021
+  Time: 23:50
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
     <style>
@@ -30,16 +37,12 @@
             return true;
         }
 
-        function doLogin() {
-            window.location = "advertisement.html";
-        }
-
         function doCancel() {
             window.location = "auth.do";
         }
 
         function doRegistration() {
-            window.location = "reg.jsp";
+            window.location = "reg.do";
         }
 
     </script>
@@ -48,7 +51,7 @@
 
 <div class="container">
     <h2>Авторизация</h2>
-    <form>
+    <form action="<%=request.getContextPath()%>/auth.do" method="post">
         <div class="form-group">
             <label for="email">Email:</label>
             <input type="email" class="form-control" id="email" placeholder="Введите email" name="email">
@@ -58,7 +61,7 @@
             <input type="password" class="form-control" id="password" placeholder="Введите пароль" name="password">
         </div>
 
-        <button type="button" onclick="doLogin();" class="btn btn-primary"
+        <button type="submit" onclick="validate();" class="btn btn-primary"
                 style="border-radius:5px; float:left; margin-right:10px">
             Войти
         </button>

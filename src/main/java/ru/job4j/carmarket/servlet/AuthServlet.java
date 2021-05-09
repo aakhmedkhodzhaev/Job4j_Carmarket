@@ -15,10 +15,9 @@ public class AuthServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("login.html").forward(req, resp);
+        req.getRequestDispatcher("login.jsp").forward(req, resp);
     }
 
     @Override
@@ -42,7 +41,7 @@ public class AuthServlet extends HttpServlet {
             } else {
                 MarketUtil.deleteUserCookies(resp);
             }
-            resp.sendRedirect(req.getContextPath() + "/info.do");
+            resp.sendRedirect(req.getContextPath() + "/advertisement.jsp");
         } else {
             req.setAttribute("error", "Не верный email или пероль");
             req.getRequestDispatcher("/reg.do").forward(req, resp);

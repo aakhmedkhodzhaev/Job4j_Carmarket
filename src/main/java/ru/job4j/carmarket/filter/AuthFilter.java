@@ -28,12 +28,12 @@ public class AuthFilter implements Filter {
         }
 
         if (req.getSession().getAttribute("user") == null) {
-            resp.sendRedirect(req.getContextPath() + "/index.html");
+            resp.sendRedirect(req.getContextPath() + "/info.do");
             return;
         }
 
         if (req.getSession().getAttribute("email") != null) {
-            resp.sendRedirect(req.getContextPath() + "/advertisement.html");
+            resp.sendRedirect(req.getContextPath() + "/advertisement.jsp");
             return;
         }
 
