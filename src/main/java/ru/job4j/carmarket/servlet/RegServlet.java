@@ -23,7 +23,7 @@ public class RegServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, NullPointerException {
         String email = req.getParameter("email"),
                 name = req.getParameter("name"),
                 password = req.getParameter("pswd");

@@ -19,7 +19,7 @@
 
 
         function doLogout() {
-            window.location = "index.html";
+            window.location = "index.jsp";
         }
 
         /*
@@ -38,7 +38,7 @@
         }*/
 
         function gotoMainPage() {
-            window.location = "index.html";
+            window.location = "index.jsp";
         }
 
         function btAddSelClick() {
@@ -222,7 +222,7 @@
         }
 
         function doCancel() {
-            window.location = "index.html";
+            window.location = "index.jsp";
         }
 
         function changeInactive(id) {
@@ -251,40 +251,7 @@
         function doSaveData() {
 
             if (!validate()) return false;
-            /*
-                        var edCity = document.getElementById("edCity");
-                        var cbCity = document.getElementById("cbCity");
-                        var edType = document.getElementById("edType");
-                        var cbType = document.getElementById("cbType");
-                        var edMark = document.getElementById("edMark");
-                        var cbMark = document.getElementById("cbMark");
-                        var edModel = document.getElementById("edModel");
-                        var cbModel = document.getElementById("cbModel");
-                        var edBody = document.getElementById("edBody");
-                        var cbBody = document.getElementById("cbBody");
-                        var edYear = document.getElementById("edYear");
-                        var edPrice = document.getElementById("edPrice");
-                        var edFile = document.getElementById("edFile");
 
-                        $.ajax("./ajax", {
-                                method : "post",
-                                data : {
-                                    command : "add_data",
-                                    city : edCity.hidden ? cbCity.options[cbCity.selectedIndex].value : edCity.value,
-                                    type : edType.hidden ? cbType.options[cbType.selectedIndex].value : edType.value,
-                                    mark : edMark.hidden ? cbMark.options[cbMark.selectedIndex].value : edMark.value,
-                                    model : edModel.hidden ? cbModel.options[cbModel.selectedIndex].value : edModel.value,
-                                    body : edBody.hidden ? cbBody.options[cbBody.selectedIndex].value : edBody.value,
-                                    year : edYear.value,
-                                    price : edPrice.value,
-                                    file : edFile.files.length == 0 ? "null" : edFile.files[0].name
-                                },
-                                success : function() {
-            //                        showData();
-                                }
-                            }
-                        );
-            */
             return true;
         }
 

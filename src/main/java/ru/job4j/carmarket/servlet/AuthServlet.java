@@ -21,7 +21,7 @@ public class AuthServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, NullPointerException {
         String email = req.getParameter("email"),
                 password = req.getParameter("password");
 
