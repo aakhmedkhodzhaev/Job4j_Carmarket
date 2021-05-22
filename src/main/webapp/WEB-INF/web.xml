@@ -32,6 +32,15 @@
         <url-pattern>/reg.do</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>PersonalController</servlet-name>
+        <servlet-class>ru.job4j.carmarket.servlet.AuthServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PersonalController</servlet-name>
+        <url-pattern>/advertisement.do</url-pattern>
+    </servlet-mapping>
+
 
     <!-- Errors Block -->
     <error-page>

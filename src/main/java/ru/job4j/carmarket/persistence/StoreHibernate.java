@@ -9,6 +9,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import ru.job4j.carmarket.model.Market;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -16,7 +17,7 @@ public class StoreHibernate implements Store, AutoCloseable {
 
     private final static StoreHibernate INSTANCE = new StoreHibernate();
 
-    private final static StoreHibernate getInstance() {
+    public final static StoreHibernate getInstance() {
         return INSTANCE;
     }
 
@@ -40,8 +41,8 @@ public class StoreHibernate implements Store, AutoCloseable {
     }
 
     @Override
-    public List<Market> findAll() {
-        List<Market> lMarket = null;
+    public Collection<Market> findAll() {
+        Collection<Market> lMarket = null;
         try {
             start();
             lMarket = session.createQuery("from j_market").list(); // return empty getResultList() return null
