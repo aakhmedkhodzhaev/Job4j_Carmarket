@@ -41,7 +41,7 @@ public class AuthServlet extends HttpServlet {
             } else {
                 MarketUtil.deleteUserCookies(resp);
             }
-            resp.sendRedirect(req.getContextPath() + "/advertisement.do");
+            resp.sendRedirect(req.getContextPath() + "/advertisement.jsp");
         } else {
             req.setAttribute("error", "Не верный email или пероль");
             req.getRequestDispatcher("/reg.do").forward(req, resp);

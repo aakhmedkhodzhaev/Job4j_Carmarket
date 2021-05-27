@@ -24,13 +24,14 @@ public class PersonalServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        if(req.getParameter("").length()>5){
+        if (req.getParameter("").length() > 5) {
             StoreHibernate.getInstance().save(
                     new Market()
             );
+            resp.sendRedirect(req.getContextPath() + "/advertisement.do");
+        } else {
+            resp.sendRedirect(req.getContextPath() + "notes/edit.jsp");
         }
-
-
 
     }
 
