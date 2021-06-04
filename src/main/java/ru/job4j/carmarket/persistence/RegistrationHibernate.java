@@ -150,17 +150,4 @@ public class RegistrationHibernate implements Registration, AutoCloseable {
         StandardServiceRegistryBuilder.destroy(registry);
     }
 
-/*  public static void main(String[] args) {
-        User user = new User();
-        user.setEmail("root@mail.su");
-        user.setName("Maxim");
-        user.setPassword("1");
-        RegistrationHibernate.getInstance().save(user);
-        user.getId();
-        user.getEmail();
-        user.getName();
-        user.getPassword();
-
-    }*/
-
 }

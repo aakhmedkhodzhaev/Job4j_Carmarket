@@ -41,6 +41,15 @@
         <url-pattern>/advertisement.do</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>AjaxController</servlet-name>
+        <servlet-class>ru.job4j.carmarket.servlet.AjaxServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AjaxController</servlet-name>
+        <url-pattern>/ajax</url-pattern>
+    </servlet-mapping>
+
 
     <!-- Errors Block -->
     <error-page>

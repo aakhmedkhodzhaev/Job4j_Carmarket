@@ -7,7 +7,7 @@
         <id name="id" column="license_id">
             <generator class="native"/>
         </id>
-        <property name="name" column="NAME"/>
+        <property name="name" column="name"/>
 
         <one-to-one name="Driver" cascade="all" class="Driver"/>
     </class>

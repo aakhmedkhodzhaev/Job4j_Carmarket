@@ -7,10 +7,11 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import ru.job4j.carmarket.model.Brand;
+import ru.job4j.carmarket.model.City;
 import ru.job4j.carmarket.model.Market;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.logging.Logger;
 
 public class StoreHibernate implements Store, AutoCloseable {
@@ -45,7 +46,7 @@ public class StoreHibernate implements Store, AutoCloseable {
         Collection<Market> lMarket = null;
         try {
             start();
-            lMarket = session.createQuery("from j_market").list(); // return empty getResultList() return null
+            lMarket = session.createQuery("from Market").list(); // return empty getResultList() return null
             transaction.commit(); // за коммитить
         } catch (HibernateException e) {
             if (transaction != null) {
@@ -59,8 +60,7 @@ public class StoreHibernate implements Store, AutoCloseable {
         return lMarket;
     }
 
-    private Market create(Market market) {
-        return market;
+    private void create(Market market) {
     }
 
     private void update(Market market) {
@@ -81,6 +81,96 @@ public class StoreHibernate implements Store, AutoCloseable {
         return null;
     }
 
+    @Override
+    public void save(City city) {
+        if (city.getId() == 0) {
+            create(city);
+        } else {
+            update(city);
+        }
+    }
+
+    private void create(City city) {
+        start();
+        session.save(city);
+        if (transaction != null) {
+            transaction.commit();
+        } else {
+            transaction.rollback();
+        }
+    }
+
+    private void update(City city) {
+        start();
+        session.update(city);
+        if (transaction != null) {
+            transaction.commit();
+        } else {
+            transaction.rollback();
+        }
+    }
+
+
+    @Override
+    public Collection<City> findAllCity() {
+        Collection<City> lCity;
+        try {
+            start();
+            lCity = session.createQuery("from City").getResultList();
+            return lCity;
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            LOG.info("Ошибка");
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    @Override
+    public City getByIdCity(int id) {
+        try {
+            start();
+            City result = session.get(City.class, id);
+            if (transaction != null) {
+                transaction.commit();
+                return result;
+            }
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            LOG.info("Ошибка");
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    @Override
+    public Boolean removeByIdCity(int id) {
+        return null;
+    }
+
+    @Override
+    public Collection<Brand> findAllBrand() {
+        Collection<Brand> lBrand;
+        try {
+            start();
+            lBrand = session.createQuery("from Brand").getResultList();
+            return lBrand;
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            LOG.info("Ошибка");
+        } finally {
+            session.close();
+        }
+        return null;
+    }
 
     private void start() {
         session = sf.openSession();
@@ -91,5 +181,11 @@ public class StoreHibernate implements Store, AutoCloseable {
     public void close() throws Exception {
         StandardServiceRegistryBuilder.destroy(registry);
     }
+
+/*
+    public static void main(String[] args) {
+        Collection<Brand> lBrand = StoreHibernate.getInstance().findAllBrand();
+        System.out.println(lBrand);
+    }*/
 
 }

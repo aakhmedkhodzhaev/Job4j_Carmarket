@@ -26,6 +26,10 @@ public class Market {
     @JoinColumn(name = "car_id")
     private Car car;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "city_id")
+    private City city;
+
     @Column(name = "photo_name")
     private String photoname;
 
@@ -67,6 +71,14 @@ public class Market {
 
     public void setCar(Car car) {
         this.car = car;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
     }
 
     public String getPhoto() {
