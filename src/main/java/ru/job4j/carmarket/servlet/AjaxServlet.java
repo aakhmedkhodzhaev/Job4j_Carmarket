@@ -14,12 +14,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.logging.Logger;
 
 public class AjaxServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
     private Gson gson = new Gson();
+
+    private static final Logger LOG = Logger.getLogger(Model.class.toString());
 
 
     @Override
@@ -31,25 +34,26 @@ public class AjaxServlet extends HttpServlet {
             String operation = req.getParameter("operation");
 
             if (operation.equals("cities")) {
-                Collection<City> city = StoreHibernate.getInstance().findAllCity();
+                Collection<City> cities = StoreHibernate.getInstance().findAllCity();
                 gson = new GsonBuilder().setPrettyPrinting().create();
-                String json = gson.toJson(city);
+                String json = gson.toJson(cities);
                 resp.getWriter().write(json);
             }
 
             if (operation.equals("brand")) {
-                Collection<Brand> brand = StoreHibernate.getInstance().findAllBrand();
+                Collection<Brand> brands = StoreHibernate.getInstance().findAllBrand();
                 gson = new GsonBuilder().setPrettyPrinting().create();
-                String json = gson.toJson(brand);
+                String json = gson.toJson(brands);
                 resp.getWriter().write(json);
             }
 
-           /* if (operation.equals("model")) {
-                Collection<Model> brand = StoreHibernate.getInstance().findAllBModel();
+            if (operation.equals("model")) {
+                String id = req.getParameter("id");
+                Collection<Model> models = StoreHibernate.getInstance().findByIdModel(Integer.valueOf(id));
                 gson = new GsonBuilder().setPrettyPrinting().create();
-                String json = gson.toJson(brand);
+                String json = gson.toJson(models);
                 resp.getWriter().write(json);
-            }*/
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

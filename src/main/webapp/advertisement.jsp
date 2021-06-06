@@ -28,9 +28,10 @@
                             var result = "";
                             for (var i = 0; i < items.length; i++) {
                                 var item = items[i];
-                                result += "<option value = " + item.id + ">" + item.name + "</option>\n";
+                                result += "<option value=" + item.id + ">" + item.name + "</option>\n";
                             }
                             document.getElementById("cmCity").innerHTML = result;
+                            console.log(data);
                         }
                     }
                 }
@@ -47,9 +48,10 @@
                             var result = "";
                             for (var i = 0; i < items.length; i++) {
                                 var item = items[i];
-                                result += "<option value = " + item.id + ">" + item.name + "</option>\n";
+                                result += "<option value=" + item.id + ">" + item.name + "</option>\n";
                             }
                             document.getElementById("cmMark").innerHTML = result;
+                            console.log(data);
                         }
                     }
                 }
@@ -57,19 +59,22 @@
         }
 
         function loadModel() {
+            var id = $('#cmMark').val();
+            console.log(id);
             $.ajax("./ajax", {
                     method: "get",
                     data: {operation: "model"},
+                    id: id,
                     complete: function (data) {
-                        if (data.responseTExt.length > 0) {
+                        if (data.responseText.length > 0) {
                             var items = JSON.parse(data.responseText);
-                            var Mark = document.getElementById("cmMark").value;
                             var result = "";
                             for (var i = 0; i < items.length; i++) {
-                                var item = item[i];
-                                result += "<option value = " + item.id + ">" + item.name + "</option>\n";
+                                var item = items[i];
+                                result += "<option value=" + item.id + ">" + item.name + "</option>\n";
                             }
                             document.getElementById("cmModel").innerHTML = result;
+                            console.log(data);
                         }
                     }
                 }
@@ -125,7 +130,7 @@
                                 <td width="100%">
                                     <select class="form-control" id="cmCity" name="cmCity">
                                     </select>
-                                    <input type="text" style="width:100%" id="ivCity" name="ivCity" hidden/>
+                                    <input type="text" style="width:100%" id="iCity" name="iCity" hidden/>
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-success" id="City" onclick="btAddSelClick();"
@@ -140,7 +145,7 @@
                                 <td width="100%">
                                     <select class="form-control" id="cmMark" name="cmMark">
                                     </select>
-                                    <input type="text" style="width:100%" id="ivMark" name="ivMark" hidden/>
+                                    <input type="text" style="width:100%" id="iMark" name="iMark" hidden/>
                                 </td>
                                 <td style="width:100px">
                                     <button type="button" class="btn btn-success" id="Mark" onclick="btAddSelClick();"
@@ -153,9 +158,9 @@
                             </tr>
                             <tr>
                                 <td width="100%">
-                                    <select class="form-control" id="cbModel" name="cbModel">
+                                    <select class="form-control" id="cmModel" name="cmModel">
                                     </select>
-                                    <input type="text" style="width:100%" id="edModel" name="edModel" hidden/>
+                                    <input type="text" style="width:100%" id="iModel" name="iModel" hidden/>
                                 </td>
                                 <td style="width:100px">
                                     <button type="button" class="btn btn-success" id="Model" onclick="btAddSelClick();"

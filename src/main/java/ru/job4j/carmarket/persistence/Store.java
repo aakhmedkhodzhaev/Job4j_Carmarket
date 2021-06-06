@@ -30,6 +30,8 @@ public interface Store {
 
     Collection<Brand> findAllBrand();
 
+    Collection<Model> findAllModel();
+
     Collection<Model> findByIdModel(int id);
 
 }

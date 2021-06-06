@@ -29,10 +29,21 @@ create table history_owner (
    car_id int not null references car(id)
 );
 
-create table j_city (
+CREATE TABLE j_city (
 id integer NOT NULL,
-name character varying(32) COLLATE pg_catalog."default" NOT NULL);
+name character varying(32) COLLATE pg_catalog."default" NOT NULL,
+CONSTRAINT j_city_pkey PRIMARY KEY (id));
 
-create table j_brand (
+CREATE TABLE j_brand (
 id integer NOT NULL,
-name character varying(32) COLLATE pg_catalog."default" NOT NULL);
+name character varying(32) COLLATE pg_catalog."default" NOT NULL,
+CONSTRAINT j_model_pkey PRIMARY KEY (id));
+
+CREATE TABLE j_model (
+id integer NOT NULL,
+brand_id integer NOT NULL,
+name character varying(32) COLLATE pg_catalog."default" NOT NULL,
+CONSTRAINT j_model_pkey PRIMARY KEY (id),
+CONSTRAINT j_model_brand_fkey FOREIGN KEY (brand_id)
+References j_brand(id)
+);

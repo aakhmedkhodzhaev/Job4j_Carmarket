@@ -174,6 +174,25 @@ public class StoreHibernate implements Store, AutoCloseable {
     }
 
     @Override
+    public Collection<Model> findAllModel() {
+        Collection<Model> lModel;
+        try {
+            start();
+            lModel = session.createQuery("from Model").getResultList();
+            return lModel;
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            LOG.info("Ошибка");
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    @Override
     public Collection<Model> findByIdModel(int id) {
         try {
             start();
@@ -201,10 +220,11 @@ public class StoreHibernate implements Store, AutoCloseable {
         StandardServiceRegistryBuilder.destroy(registry);
     }
 
-/*
-    public static void main(String[] args) {
-        Collection<Brand> lBrand = StoreHibernate.getInstance().findAllBrand();
-        System.out.println(lBrand);
-    }*/
+
+/*   public static void main(String[] args) {
+        int id = 2;
+        Collection<Model> lModel = StoreHibernate.getInstance().findByIdModel(id);
+            System.out.println(lModel);
+        } */
 
 }
