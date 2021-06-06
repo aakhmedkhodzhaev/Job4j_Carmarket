@@ -10,6 +10,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import ru.job4j.carmarket.model.Brand;
 import ru.job4j.carmarket.model.City;
 import ru.job4j.carmarket.model.Market;
+import ru.job4j.carmarket.model.Model;
 
 import java.util.Collection;
 import java.util.logging.Logger;
@@ -164,6 +165,24 @@ public class StoreHibernate implements Store, AutoCloseable {
             if (transaction != null) {
                 transaction.rollback();
             }
+            e.printStackTrace();
+            LOG.info("Ошибка");
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    @Override
+    public Collection<Model> findByIdModel(int id) {
+        try {
+            start();
+            Collection<Model> result = session.createQuery("from Model where brand_id =" + id).getResultList();
+            if (transaction != null) {
+                transaction.commit();
+                return result;
+            }
+        } catch (HibernateException e) {
             e.printStackTrace();
             LOG.info("Ошибка");
         } finally {

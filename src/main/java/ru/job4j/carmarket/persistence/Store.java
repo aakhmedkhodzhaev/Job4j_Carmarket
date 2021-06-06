@@ -3,6 +3,7 @@ package ru.job4j.carmarket.persistence;
 import ru.job4j.carmarket.model.Brand;
 import ru.job4j.carmarket.model.City;
 import ru.job4j.carmarket.model.Market;
+import ru.job4j.carmarket.model.Model;
 
 import java.util.Collection;
 import java.util.List;
@@ -28,5 +29,7 @@ public interface Store {
     Boolean removeByIdCity(int id);
 
     Collection<Brand> findAllBrand();
+
+    Collection<Model> findByIdModel(int id);
 
 }

@@ -17,8 +17,9 @@ public class Model {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Brand> brands = new ArrayList<>();
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "brand_id")
+    private Brand brands;
 
     public int getId() {
         return id;
@@ -36,11 +37,11 @@ public class Model {
         this.name = name;
     }
 
-    public List<Brand> getBrands() {
+    public Brand getBrands() {
         return brands;
     }
 
-    public void setBrands(List<Brand> brands) {
+    public void setBrands(Brand brands) {
         this.brands = brands;
     }
 

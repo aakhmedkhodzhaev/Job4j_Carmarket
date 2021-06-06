@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page pageEncoding="cp1251"%>
+<%@ page pageEncoding="cp1251" %>
 <html lang="en">
 <head>
     <title>Car Market | Home</title>
@@ -20,15 +20,15 @@
     <script>
         function loadCities() {
             $.ajax("./ajax", {
-                    method : "get",
-                    data : {operation : "cities"},
-                    complete : function(data) {
+                    method: "get",
+                    data: {operation: "cities"},
+                    complete: function (data) {
                         if (data.responseText.length > 0) {
                             var items = JSON.parse(data.responseText);
                             var result = "";
-                            for (var i = 0; i < items.length; i ++) {
+                            for (var i = 0; i < items.length; i++) {
                                 var item = items[i];
-                                result += "<option>" + item.name + "</option>\n";
+                                result += "<option value = " + item.id + ">" + item.name + "</option>\n";
                             }
                             document.getElementById("cmCity").innerHTML = result;
                         }
@@ -39,17 +39,37 @@
 
         function loadMark() {
             $.ajax("./ajax", {
-                    method : "get",
-                    data : {operation : "brand"},
-                    complete : function(data) {
+                    method: "get",
+                    data: {operation: "brand"},
+                    complete: function (data) {
                         if (data.responseText.length > 0) {
                             var items = JSON.parse(data.responseText);
                             var result = "";
-                            for (var i = 0; i < items.length; i ++) {
+                            for (var i = 0; i < items.length; i++) {
                                 var item = items[i];
-                                result += "<option>" + item.name + "</option>\n";
+                                result += "<option value = " + item.id + ">" + item.name + "</option>\n";
                             }
                             document.getElementById("cmMark").innerHTML = result;
+                        }
+                    }
+                }
+            )
+        }
+
+        function loadModel() {
+            $.ajax("./ajax", {
+                    method: "get",
+                    data: {operation: "model"},
+                    complete: function (data) {
+                        if (data.responseTExt.length > 0) {
+                            var items = JSON.parse(data.responseText);
+                            var Mark = document.getElementById("cmMark").value;
+                            var result = "";
+                            for (var i = 0; i < items.length; i++) {
+                                var item = item[i];
+                                result += "<option value = " + item.id + ">" + item.name + "</option>\n";
+                            }
+                            document.getElementById("cmModel").innerHTML = result;
                         }
                     }
                 }
@@ -59,8 +79,10 @@
         function doLogout() {
             window.location = "index.jsp";
         }
+
         loadCities();
         loadMark();
+        loadModel();
     </script>
 </head>
 <body>
@@ -103,11 +125,12 @@
                                 <td width="100%">
                                     <select class="form-control" id="cmCity" name="cmCity">
                                     </select>
-                                    <input type="text" style="width:100%" id="ivCity" name = "ivCity" hidden/>
+                                    <input type="text" style="width:100%" id="ivCity" name="ivCity" hidden/>
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-success" id="City" onclick="btAddSelClick();"
-                                            value="0">Добавить</button>
+                                            value="0">Добавить
+                                    </button>
                                 </td>
                             </tr>
                             <tr>
@@ -136,21 +159,6 @@
                                 </td>
                                 <td style="width:100px">
                                     <button type="button" class="btn btn-success" id="Model" onclick="btAddSelClick();"
-                                            value="0">Добавить
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><b>Кузов</b></td>
-                            </tr>
-                            <tr>
-                                <td width="100%">
-                                    <select class="form-control" id="cbBody" name="cbBody">
-                                    </select>
-                                    <input type="text" style="width:100%" id="edBody" name="edBody" hidden/>
-                                </td>
-                                <td style="width:100px">
-                                    <button type="button" class="btn btn-success" id="Body" onclick="btAddSelClick();"
                                             value="0">Добавить
                                     </button>
                                 </td>
