@@ -31,63 +31,62 @@
                                 result += "<option value=" + item.id + ">" + item.name + "</option>\n";
                             }
                             document.getElementById("cmCity").innerHTML = result;
-                            console.log(data);
                         }
                     }
                 }
             )
         }
 
-        function loadMark() {
+        $(document).ready(function() {
             $.ajax("./ajax", {
-                    method: "get",
-                    data: {operation: "brand"},
-                    complete: function (data) {
-                        if (data.responseText.length > 0) {
-                            var items = JSON.parse(data.responseText);
-                            var result = "";
-                            for (var i = 0; i < items.length; i++) {
-                                var item = items[i];
-                                result += "<option value=" + item.id + ">" + item.name + "</option>\n";
-                            }
-                            document.getElementById("cmMark").innerHTML = result;
-                            console.log(data);
+                method: "get",
+                data: {operation: "brand"},
+                complete: function (data) {
+                    if (data.responseText.length > 0) {
+                        var items = JSON.parse(data.responseText);
+                        var result = "";
+                        for (var i = 0; i < items.length; i++) {
+                            var item = items[i];
+                            result += "<option value=" + item.id + ">" + item.name + "</option>\n";
                         }
+                        document.getElementById("cmMark").innerHTML = result;
                     }
                 }
-            )
-        }
+            });
 
-        function loadModel() {
-            var id = $('#cmMark').val();
-            console.log(id);
-            $.ajax("./ajax", {
-                    method: "get",
-                    data: {operation: "model"},
-                    id: id,
-                    complete: function (data) {
-                        if (data.responseText.length > 0) {
-                            var items = JSON.parse(data.responseText);
-                            var result = "";
-                            for (var i = 0; i < items.length; i++) {
-                                var item = items[i];
-                                result += "<option value=" + item.id + ">" + item.name + "</option>\n";
+            $('#cmMark').change(function () {
+                $('#iModel').find('option').remove();
+                $('#iModel').append('<option>Select Model</option>');
+
+                let mid = $('#cmMark').val();
+
+                $.ajax("./ajax", {
+                        method: "get",
+                        data: {
+                            operation: "model",
+                            id: mid
+                        },
+                        complete: function (data) {
+                            if (data.responseText.length > 0) {
+                                var items = JSON.parse(data.responseText);
+                                var result = "";
+                                for (var i = 0; i < items.length; i++) {
+                                    var item = items[i];
+                                    result += "<option value=" + item.id + ">" + item.name + "</option>\n";
+                                }
+                                document.getElementById("cmModel").innerHTML = result;
                             }
-                            document.getElementById("cmModel").innerHTML = result;
-                            console.log(data);
                         }
                     }
-                }
-            )
-        }
+                )
+            });
+        });
 
         function doLogout() {
             window.location = "index.jsp";
         }
 
         loadCities();
-        loadMark();
-        loadModel();
     </script>
 </head>
 <body>
@@ -107,7 +106,7 @@
     </ul>
 </nav>
 
-<div class="container-left" style="background-color:lightgray;padding:10px">
+<div class="container-left" style="background-color:white;padding:10px">
 
     <div class="container" style="padding-top: 20px; padding-bottom: 20px">
         <form action="/carseller/add_data" method="post" enctype="multipart/form-data">
@@ -132,11 +131,6 @@
                                     </select>
                                     <input type="text" style="width:100%" id="iCity" name="iCity" hidden/>
                                 </td>
-                                <td>
-                                    <button type="button" class="btn btn-success" id="City" onclick="btAddSelClick();"
-                                            value="0">Добавить
-                                    </button>
-                                </td>
                             </tr>
                             <tr>
                                 <td><b>Марка</b></td>
@@ -147,11 +141,6 @@
                                     </select>
                                     <input type="text" style="width:100%" id="iMark" name="iMark" hidden/>
                                 </td>
-                                <td style="width:100px">
-                                    <button type="button" class="btn btn-success" id="Mark" onclick="btAddSelClick();"
-                                            value="0">Добавить
-                                    </button>
-                                </td>
                             </tr>
                             <tr>
                                 <td><b>Модель</b></td>
@@ -161,11 +150,6 @@
                                     <select class="form-control" id="cmModel" name="cmModel">
                                     </select>
                                     <input type="text" style="width:100%" id="iModel" name="iModel" hidden/>
-                                </td>
-                                <td style="width:100px">
-                                    <button type="button" class="btn btn-success" id="Model" onclick="btAddSelClick();"
-                                            value="0">Добавить
-                                    </button>
                                 </td>
                             </tr>
                             <tr>

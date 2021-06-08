@@ -48,8 +48,8 @@ public class AjaxServlet extends HttpServlet {
             }
 
             if (operation.equals("model")) {
-                String id = req.getParameter("id");
-                Collection<Model> models = StoreHibernate.getInstance().findByIdModel(Integer.valueOf(id));
+                int id = Integer.valueOf(req.getParameter("id"));
+                Collection<Model> models = StoreHibernate.getInstance().findByIdModel(id);
                 gson = new GsonBuilder().setPrettyPrinting().create();
                 String json = gson.toJson(models);
                 resp.getWriter().write(json);
