@@ -37,7 +37,7 @@
             )
         }
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             $.ajax("./ajax", {
                 method: "get",
                 data: {operation: "brand"},
@@ -98,10 +98,11 @@
     <!-- Links -->
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" onclick="gotoMainPage();">Главная страница</a>
+            <a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">Главная страница</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" onclick="doLogout()">Выход</a>
+            <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp"> <c:out
+                    value="${user.name}"/> | Выйти</a>
         </li>
     </ul>
 </nav>
@@ -109,104 +110,115 @@
 <div class="container-left" style="background-color:white;padding:10px">
 
     <div class="container" style="padding-top: 20px; padding-bottom: 20px">
-        <form action="/carseller/add_data" method="post" enctype="multipart/form-data">
+        <form action="/carseller/ajax" method="post" enctype="multipart/form-data">
             <table width="100%" cellspacing="10px">
                 <tr>
                     <td>
                         <table width="100%">
-                            <tr>
-                                <td><b>Наименование Объявления:</b></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input class="form-control" id="descriptions" name="descriptions"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><b>Город</b></td>
-                            </tr>
-                            <tr>
-                                <td width="100%">
-                                    <select class="form-control" id="cmCity" name="cmCity">
-                                    </select>
-                                    <input type="text" style="width:100%" id="iCity" name="iCity" hidden/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><b>Марка</b></td>
-                            </tr>
-                            <tr>
-                                <td width="100%">
-                                    <select class="form-control" id="cmMark" name="cmMark">
-                                    </select>
-                                    <input type="text" style="width:100%" id="iMark" name="iMark" hidden/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><b>Модель</b></td>
-                            </tr>
-                            <tr>
-                                <td width="100%">
-                                    <select class="form-control" id="cmModel" name="cmModel">
-                                    </select>
-                                    <input type="text" style="width:100%" id="iModel" name="iModel" hidden/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <table>
-                                        <tr>
-                                            <td>
-                                                <table>
-                                                    <tr>
-                                                        <td><b>Год выпуска</b></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="number" id="edYear" name="edYear">
-                                                        </td>
-                                                    </tr>
-                                                </table>
-
-                                            </td>
-                                            <td>
-                                                <table>
-                                                    <tr>
-                                                        <td><b>Цена</b></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="number" id="edPrice" name="edPrice"
-                                                                   width="70px">
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
+                            <div>
+                                <tr>
+                                    <td><b>Наименование Объявления:</b></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input class="form-control" id="name" name="name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Город</b></td>
+                                </tr>
+                                <tr>
+                                    <td width="100%">
+                                        <select class="form-control" id="cmCity" name="cmCity">
+                                        </select>
+                                        <input type="text" style="width:100%" id="iCity" name="iCity" hidden/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Марка</b></td>
+                                </tr>
+                                <tr>
+                                    <td width="100%">
+                                        <select class="form-control" id="cmMark" name="cmMark">
+                                        </select>
+                                        <input type="text" style="width:100%" id="iMark" name="iMark" hidden/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Модель</b></td>
+                                </tr>
+                                <tr>
+                                    <td width="100%">
+                                        <select class="form-control" id="cmModel" name="cmModel">
+                                        </select>
+                                        <input type="text" style="width:100%" id="iModel" name="iModel" hidden/>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <br>
-                                    <input type="file" id="edFile" name="edFile">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <br>
-                                    <button type="submit" class="btn btn-primary" style="float:left;
+                                    <td><b>Описание объявления:</b></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <area rows="2" class="form-control" id="descriptions" name="descriptions"
+                                              maxlength="500"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <table>
+                                                        <tr>
+                                                            <td><b>Год выпуска</b></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <input type="number" id="iYear" name="iYear">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+
+                                                </td>
+                                                <td>
+                                                    <table>
+                                                        <tr>
+                                                            <td><b>Цена</b></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <input type="number" id="iPrice" name="iPrice"
+                                                                       width="70px">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <br>
+                                        <input type="file" id="iFile" name="iFile">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <br>
+                                        <button type="submit" class="btn btn-primary" style="float:left;
                                        margin-right:10px" onclick="return validate();">Принять
-                                    </button>
-                                </td>
-                                <td>
-                                    <br>
-                                    <button type="button" onclick="doCancel();" class="btn btn-danger"
-                                            style="float:right">Отмена
-                                    </button>
-                                </td>
-                            </tr>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <br>
+                                        <button type="button" onclick="doCancel();" class="btn btn-danger"
+                                                style="float:right">Отмена
+                                        </button>
+                                    </td>
+                                </tr>
+                            </div>
                         </table>
                     </td>
                 </tr>

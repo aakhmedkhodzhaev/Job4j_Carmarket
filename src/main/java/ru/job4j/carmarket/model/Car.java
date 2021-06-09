@@ -34,7 +34,7 @@ public class Car {
     private LocalDate years;
 
     @Column(name = "public_date")
-    private LocalDateTime public_date;
+    private LocalDateTime publicDate;
 
     // private Set<Driver> drivers = new HashSet<>();
 
@@ -70,12 +70,12 @@ public class Car {
         this.years = years;
     }
 
-    public LocalDateTime getPublic_date() {
-        return public_date;
+    public LocalDateTime getPublicDate() {
+        return publicDate;
     }
 
-    public void setPublic_date(LocalDateTime public_date) {
-        this.public_date = public_date;
+    public void setPublicDate(LocalDateTime publicDate) {
+        this.publicDate = publicDate;
     }
 
     public Engine getEngine() {
@@ -111,8 +111,12 @@ public class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Car)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Car)) {
+            return false;
+        }
         Car car = (Car) o;
         return getId() == car.getId();
     }
