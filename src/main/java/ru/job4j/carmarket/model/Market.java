@@ -33,6 +33,20 @@ public class Market {
     @Column(name = "photo_name")
     private String photoname;
 
+    public Market() {
+        super();
+    }
+
+    public Market(int id, String name, String description, User user, Car car, City city, String photoname) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.user = user;
+        this.car = car;
+        this.city = city;
+        this.photoname = photoname;
+    }
+
     public int getId() {
         return id;
     }

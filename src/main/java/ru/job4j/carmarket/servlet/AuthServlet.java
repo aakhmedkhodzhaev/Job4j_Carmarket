@@ -22,11 +22,11 @@ public class AuthServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, NullPointerException {
-        String email = req.getParameter("email"),
-                password = req.getParameter("password");
+        String email = req.getParameter("email");
+        String password = req.getParameter("password");
 
-        String rememberMe = req.getParameter("rememberMe");
-        boolean remember = "Y".equals(rememberMe);
+        //  String rememberMe = req.getParameter("rememberMe");
+        //  boolean remember = "Y".equals(rememberMe);
 
         User user = RegistrationHibernate.getInstance().getByData(email, password);
         if (user != null) {
@@ -34,13 +34,14 @@ public class AuthServlet extends HttpServlet {
             user.setId(user.getId());
             user.setEmail(user.getEmail());
             user.setPassword(password);
-            MarketUtil.saveLoginedUser(sc, user);
-
+            MarketUtil.saveLoginedUser(sc, user); // ToDo Сохранение данных user в сессии
+            /*
             if (remember) {
                 MarketUtil.saveUserCookie(resp, user);
             } else {
                 MarketUtil.deleteUserCookies(resp);
-            }
+            }*/
+            sc.setAttribute("user", user); // Дублирует сохранение данных user в сессии
             resp.sendRedirect(req.getContextPath() + "/advertisement.jsp");
         } else {
             req.setAttribute("error", "Не верный email или пероль");

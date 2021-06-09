@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page pageEncoding="cp1251" %>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 <html lang="en">
 <head>
     <title>Car Market | Home</title>
@@ -100,9 +101,13 @@
         <li class="nav-item">
             <a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">Главная страница</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp"> <c:out
-                    value="${user.name}"/> | Выйти</a>
+        <li class="nav-item" style="float: right; text-align: right;">
+            <a class="nav-link" type="hidden" value="${user.id}">
+            </a>
+        </li>
+        <li class="nav-item" style="float: right; text-align: right;">
+            <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp">
+                <c:out value="${user.name}"/> | Выйти</a>
         </li>
     </ul>
 </nav>
@@ -160,8 +165,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <area rows="2" class="form-control" id="descriptions" name="descriptions"
-                                              maxlength="500"/>
+                                        <textarea rows="3" class="form-control" id="descriptions" name="descriptions"
+                                                  maxlength="500" placeholder="Максимальная длина 500 символов"></textarea>
                                     </td>
                                 </tr>
                                 <tr>
