@@ -33,8 +33,12 @@ public class Driver {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Driver)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Driver)) {
+            return false;
+        }
         Driver driver = (Driver) o;
         return getId() == driver.getId();
     }

@@ -16,16 +16,16 @@ public class Car {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "name")
-    private String name;
-
     @ManyToOne
-    @JoinColumn(name = "engine_id", foreignKey = @ForeignKey(name = "j_engine_id_fk"))
-    private Engine engine;
+    @JoinColumn(name = "brand_id", foreignKey = @ForeignKey(name = "j_brand_id_fk"))
+    private Brand brand;
 
     @ManyToOne
     @JoinColumn(name = "model_id", foreignKey = @ForeignKey(name = "j_model_id_fk"))
     private Model model;
+
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "price")
     private String price;
@@ -33,8 +33,8 @@ public class Car {
     @Column(name = "years")
     private LocalDate years;
 
-    @Column(name = "public_date")
-    private LocalDateTime publicDate;
+    @Column(name = "create_date")
+    private LocalDateTime createDate;
 
     // private Set<Driver> drivers = new HashSet<>();
 
@@ -71,19 +71,19 @@ public class Car {
     }
 
     public LocalDateTime getPublicDate() {
-        return publicDate;
+        return createDate;
     }
 
     public void setPublicDate(LocalDateTime publicDate) {
-        this.publicDate = publicDate;
+        this.createDate = createDate;
     }
 
-    public Engine getEngine() {
-        return engine;
+    public Brand getBrand() {
+        return brand;
     }
 
-    public void setEngine(Engine engine) {
-        this.engine = engine;
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 
     /*
