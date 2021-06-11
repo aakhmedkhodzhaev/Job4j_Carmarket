@@ -126,7 +126,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input class="form-control" id="name" name="name"/>
+                                        <input class="form-control" id="name" name="name" placeholder="Название Объявления"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -180,7 +180,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <input type="number" id="iYear" name="iYear">
+                                                                <input type="number" id="iYear" name="iYear" placeholder="Год выпуска машины">
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -193,7 +193,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <input type="number" id="iPrice" name="iPrice"
+                                                                <input type="number" id="iPrice" name="iPrice" placeholder="Цена"
                                                                        width="70px">
                                                             </td>
                                                         </tr>
