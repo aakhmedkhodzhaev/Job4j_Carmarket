@@ -34,7 +34,7 @@
 
     <servlet>
         <servlet-name>PersonalController</servlet-name>
-        <servlet-class>ru.job4j.carmarket.servlet.AuthServlet</servlet-class>
+        <servlet-class>ru.job4j.carmarket.servlet.PersonalServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PersonalController</servlet-name>

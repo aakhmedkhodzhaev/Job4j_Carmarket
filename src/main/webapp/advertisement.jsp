@@ -83,8 +83,25 @@
             });
         });
 
-        function doLogout() {
-            window.location = "index.jsp";
+        function validate() {
+            var valuea = $('#name').val(),
+                valueb = $('#cmCity').val(),
+                valuec = $('#cmMark').val(),
+                valued = $('#cmModel').val(),
+                valuee = $('#cmYear').val(),
+                valuef = $('#cmPrice').val(),
+                valueg = $('#descriptions').val(),
+                valueH = $('#cmFile').val(),
+                result = false;
+            if (valuea == '') {
+                alert($('#name').attr('title'));
+            } else if (valueb == '') {
+                alert($('#iCity').attr('title'));
+            }
+            else {
+                result = true;
+            }
+            return result;
         }
 
         loadCities();
@@ -115,121 +132,124 @@
 <div class="container-left" style="background-color:white;padding:10px">
 
     <div class="container" style="padding-top: 20px; padding-bottom: 20px">
-        <form action="/carseller/ajax" method="post" enctype="multipart/form-data">
+        <form action="/advertisement.do" method="post">
             <table width="100%" cellspacing="10px">
                 <tr>
                     <td>
                         <table width="100%">
-                            <div>
-                                <tr>
-                                    <td><b>Наименование Объявления:</b></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input class="form-control" id="name" name="name" placeholder="Название Объявления"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><b>Город</b></td>
-                                </tr>
-                                <tr>
-                                    <td width="100%">
-                                        <select class="form-control" id="cmCity" name="cmCity">
-                                        </select>
-                                        <input type="text" style="width:100%" id="iCity" name="iCity" hidden/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><b>Марка</b></td>
-                                </tr>
-                                <tr>
-                                    <td width="100%">
-                                        <select class="form-control" id="cmMark" name="cmMark">
-                                        </select>
-                                        <input type="text" style="width:100%" id="iMark" name="iMark" hidden/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><b>Модель</b></td>
-                                </tr>
-                                <tr>
-                                    <td width="100%">
-                                        <select class="form-control" id="cmModel" name="cmModel">
-                                        </select>
-                                        <input type="text" style="width:100%" id="iModel" name="iModel" hidden/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <br>
-                                    <td><b>Описание объявления:</b></td>
-                                </tr>
-                                <tr>
-                                    <td>
+                            <tr>
+                                <td><b>Наименование Объявления:</b></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                           title="Название Объявления" placeholder="Название Объявления"/>
+                                    <input type="hidden" class="form-control" id="userId" name="userId"
+                                           value="${user.id}"/>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>Город</b></td>
+                            </tr>
+                            <tr>
+                                <td width="100%">
+                                    <select class="form-control" id="cmCity" name="cmCity">
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>Марка</b></td>
+                            </tr>
+                            <tr>
+                                <td width="100%">
+                                    <select class="form-control" id="cmMark" name="cmMark">
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>Модель</b></td>
+                            </tr>
+                            <tr>
+                                <td width="100%">
+                                    <select class="form-control" id="cmModel" name="cmModel">
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <br>
+                                <td><b>Описание объявления:</b></td>
+                            </tr>
+                            <tr>
+                                <td>
                                         <textarea rows="3" class="form-control" id="descriptions" name="descriptions"
-                                                  maxlength="500" placeholder="Максимальная длина 500 символов"></textarea>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <table>
-                                            <tr>
-                                                <td>
-                                                    <table>
-                                                        <tr>
-                                                            <td><b>Год выпуска</b></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <input type="number" id="iYear" name="iYear" placeholder="Год выпуска машины">
-                                                            </td>
-                                                        </tr>
-                                                    </table>
+                                                  maxlength="500"
+                                                  placeholder="Максимальная длина 500 символов"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <table>
+                                                    <tr>
+                                                        <td><b>Год выпуска</b></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="number" id="cmYear" name="cmYear"
+                                                                   placeholder="Год выпуска машины">
+                                                        </td>
+                                                    </tr>
+                                                </table>
 
-                                                </td>
-                                                <td>
-                                                    <table>
-                                                        <tr>
-                                                            <td><b>Цена</b></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <input type="number" id="iPrice" name="iPrice" placeholder="Цена"
-                                                                       width="70px">
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <br>
-                                        <input type="file" id="iFile" name="iFile">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <br>
-                                        <button type="submit" class="btn btn-primary" style="float:left;
+                                            </td>
+                                            <td>
+                                                <table>
+                                                    <tr>
+                                                        <td><b>Цена</b></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="number" id="cmPrice" name="cmPrice"
+                                                                   placeholder="Цена"
+                                                                   width="70px">
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <br>
+                                    <input type="file" id="cmFile" name="cmFile">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <br>
+                                    <button type="submit" class="btn btn-primary" style="float:left;
                                        margin-right:10px" onclick="return validate();">Принять
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <br>
-                                        <button type="button" onclick="doCancel();" class="btn btn-danger"
-                                                style="float:right">Отмена
-                                        </button>
-                                    </td>
-                                </tr>
-                            </div>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </form>
+                                    </button>
+                                </td>
+                                <td>
+                                    <br>
+                                    <button type="button" onclick="doCancel();" class="btn btn-danger"
+                                            style="float:right">Отмена
+                                    </button>
+                                </td>
+                            </tr>
     </div>
+    </table>
+    </td>
+    </tr>
+    </table>
+    </form>
+</div>
 </div>
 
 <table class="table table-striped" id="table">

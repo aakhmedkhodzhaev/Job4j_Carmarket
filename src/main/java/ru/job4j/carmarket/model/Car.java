@@ -31,7 +31,7 @@ public class Car {
     private String price;
 
     @Column(name = "years")
-    private LocalDate years;
+    private String years;
 
     @Column(name = "create_date")
     private LocalDateTime createDate;
@@ -62,11 +62,11 @@ public class Car {
         this.price = price;
     }
 
-    public LocalDate getYears() {
+    public String getYears() {
         return years;
     }
 
-    public void setYears(LocalDate years) {
+    public void setYears(String years) {
         this.years = years;
     }
 

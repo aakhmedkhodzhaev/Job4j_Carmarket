@@ -3,6 +3,7 @@ package ru.job4j.carmarket.filter;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class AuthFilter implements Filter {
@@ -31,11 +32,19 @@ public class AuthFilter implements Filter {
             resp.sendRedirect(req.getContextPath() + "/index.jsp");
             return;
         }
-
+        /*
         if (req.getSession().getAttribute("email") != null) {
             resp.sendRedirect(req.getContextPath() + "/advertisement.jsp");
             return;
         }
+
+        HttpSession session = req.getSession(false);// don't create if it doesn't exist
+        if (session != null && !session.isNew()) {
+            chain.doFilter(req, resp);
+        } else {
+            resp.sendRedirect("/login.jsp");
+        }
+        */
 
         chain.doFilter(sreq, sresp);
     }
