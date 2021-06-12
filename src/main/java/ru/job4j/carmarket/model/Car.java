@@ -24,16 +24,16 @@ public class Car {
     @JoinColumn(name = "model_id", foreignKey = @ForeignKey(name = "j_model_id_fk"))
     private Model model;
 
-    @Column(name = "name")
-    private String name;
-
     @Column(name = "price")
     private String price;
 
     @Column(name = "years")
     private String years;
 
-    @Column(name = "create_date")
+    @Column(name = "created_by")
+    private Long createdBy;
+
+    @Column(name = "created_date")
     private LocalDateTime createDate;
 
     // private Set<Driver> drivers = new HashSet<>();
@@ -44,14 +44,6 @@ public class Car {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPrice() {
@@ -70,11 +62,19 @@ public class Car {
         this.years = years;
     }
 
-    public LocalDateTime getPublicDate() {
+    public Long getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Long createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public LocalDateTime getCreateDate() {
         return createDate;
     }
 
-    public void setPublicDate(LocalDateTime publicDate) {
+    public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
 

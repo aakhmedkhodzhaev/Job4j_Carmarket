@@ -1,6 +1,7 @@
 package ru.job4j.carmarket.servlet;
 
 import ru.job4j.carmarket.model.*;
+import ru.job4j.carmarket.persistence.RegistrationHibernate;
 import ru.job4j.carmarket.persistence.StoreHibernate;
 import ru.job4j.carmarket.util.MarketUtil;
 
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,21 +50,24 @@ public class PersonalServlet extends HttpServlet {
 
         String photoname = req.getParameter("cmFile");
 
-        User user = new User();
         Car car = new Car();
         Brand brand = new Brand();
         Model model = new Model();
-        City city = new City();
-        user.setId(Long.valueOf(iUser));
-        brand.setName(iMark);
-        model.setName(iModel);
-        car.setBrand(brand);
-        car.setModel(model);
-        car.setPrice(iPrice);
-        car.setYears(iYear);
-        city.setId(Integer.valueOf(iCity));
 
-        if (user != null) {
+        User user = RegistrationHibernate.getInstance().getById(Long.valueOf(iUser));
+        City city = StoreHibernate.getInstance().getByIdCity(Integer.valueOf(iCity));
+
+
+        if (user.getId() == Long.valueOf(iUser)) {
+            brand.setId(Integer.valueOf(iMark));
+            model.setId(Integer.valueOf(iModel));
+            car.setCreatedBy(user.getId());
+            car.setBrand(brand);
+            car.setModel(model);
+            car.setPrice(iPrice);
+            car.setYears(iYear);
+            car.setCreateDate(LocalDateTime.now());
+
             StoreHibernate.getInstance().save(
                     new Market(
                             name,

@@ -62,26 +62,82 @@ public class StoreHibernate implements Store, AutoCloseable {
     }
 
     private void create(Market market) {
-
-
+        start();
+        session.save(market);
+        if (transaction != null) {
+            transaction.commit();
+        } else {
+            transaction.rollback();
+        }
     }
 
     private void update(Market market) {
+        start();
+        session.update(market);
+        if (transaction != null) {
+            transaction.commit();
+        } else {
+            transaction.rollback();
+        }
     }
 
     @Override
     public Market getById(int id) {
+        try {
+            start();
+            Market result = session.get(Market.class, id);
+            if (transaction != null) {
+                transaction.commit();
+                return result;
+            } else {
+                transaction.rollback();
+            }
+        } catch (HibernateException e) {
+            transaction.rollback();
+            e.printStackTrace();
+            LOG.info("Ошибка");
+        } finally {
+            session.close();
+        }
         return null;
     }
 
     @Override
     public Boolean removeById(int id) {
-        return null;
+        Boolean result = false;
+        try {
+            start();
+            Market delMarket = session.load(Market.class, id);
+            session.delete(delMarket);
+            if (transaction != null) {
+                transaction.commit();
+                result = true;
+            } else {
+                transaction.rollback();
+            }
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+        return result;
     }
 
     @Override
     public Boolean deleteAll(Market market) {
-        return null;
+        Boolean result = false;
+        try {
+            start();
+            Market delMarket = session.load(Market.class, market.getUser().getId());
+            session.delete(delMarket);
+            if (transaction != null) {
+                transaction.commit();
+                result = true;
+            } else {
+                transaction.rollback();
+            }
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+        return result;
     }
 
     @Override
@@ -143,6 +199,7 @@ public class StoreHibernate implements Store, AutoCloseable {
                 return result;
             }
         } catch (HibernateException e) {
+            transaction.rollback();
             e.printStackTrace();
             LOG.info("Ошибка");
         } finally {
@@ -199,7 +256,7 @@ public class StoreHibernate implements Store, AutoCloseable {
         try {
             start();
             Collection<Model> result = session.createQuery("from Model where brand_id =" + id).getResultList();
-                return result;
+            return result;
         } catch (HibernateException e) {
             if (transaction != null) {
                 transaction.rollback();

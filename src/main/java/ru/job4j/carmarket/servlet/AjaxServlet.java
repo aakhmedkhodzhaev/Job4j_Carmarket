@@ -2,6 +2,11 @@ package ru.job4j.carmarket.servlet;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.IOUtils;
 import ru.job4j.carmarket.model.*;
 import ru.job4j.carmarket.persistence.StoreHibernate;
 import ru.job4j.carmarket.util.MarketUtil;
@@ -11,8 +16,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
+import java.io.*;
 import java.util.Collection;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class AjaxServlet extends HttpServlet {
@@ -66,6 +72,7 @@ public class AjaxServlet extends HttpServlet {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+                LOG.info("Ошибка");
             }
 
         }
@@ -75,27 +82,32 @@ public class AjaxServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
-        String userId = req.getParameter("id");
-        String name = req.getParameter("name");
-        String city = req.getParameter("iCity");
-        String brand = req.getParameter("iMark");
-        String model = req.getParameter("iModel");
-        String descriptions = req.getParameter("descriptions");
-        String years = req.getParameter("iYear");
-        String price = req.getParameter("iPrice");
-        String file = req.getParameter("iFile");
-        if (req.getParameter("").length() > 5) {
-            StoreHibernate.getInstance().save(
-                    new Market(
-                            /*  name, userId, descriptions, city, brand, model, years, price, file
-                             */)
-            );
-            resp.sendRedirect(req.getContextPath() + "/advertisement.do");
-        } else {
-            resp.sendRedirect(req.getContextPath() + "notes/edit.jsp");
+        resp.setContentType("text/plain");
+        resp.setCharacterEncoding("UTF-8");
+        DiskFileItemFactory factory = new DiskFileItemFactory(); // ServletContext servletContext = this.getServletConfig().getServletContext();
+        File files = new File("C:\\Projects\\Job4j\\Job4j_Middle\\Images\\"); // (File) servletContext.getAttribute("javax.servlet.context.tempdir");
+        factory.setRepository(files);
+        ServletFileUpload upload = new ServletFileUpload(factory);
+        try {
+            List<FileItem> items = upload.parseRequest(req);
+            File folder = new File("images");
+            if (!folder.exists()) {
+                folder.mkdir();
+            }
+            for (FileItem item : items) {
+                if (!item.isFormField()) {
+                    File file = new File(folder + File.separator + item.getName());
+                    try (BufferedInputStream in = new BufferedInputStream(item.getInputStream());
+                         FileOutputStream out = new FileOutputStream(file)) {
+                        byte[] bytes = IOUtils.toByteArray(in);
+                        out.write(bytes);
+                    }
+                }
+            }
+        } catch (FileUploadException | FileNotFoundException e) {
+            e.printStackTrace();
         }
-
+        doGet(req, resp);
     }
 
 }
