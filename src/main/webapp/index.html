@@ -11,6 +11,40 @@
 </head>
 <body>
 
+<!-- get Items From db -->
+<script>
+    setInterval(getAllMarket, 25000);
+
+    <!-- get All Ads-->
+    function getAllMarket() {
+        var urlGetQuery = './json';
+        $.ajax(urlGetQuery).done(function (data) {
+                var refershBody = '';
+                var json = JSON.parse(data);
+                for (item in json) {
+                    refershBody += '<td><td>' + json[item].id.toString() +
+                        '</td><td>' + json[item].name.toString() +
+                        '</td><td>' + json[item].city.toString() +
+                        '</td><td>' + json[item].price.toString() +
+                        '</td><td>' + json[item].photo.toString() +
+                        '</td><td>' + json[item].description.toString() +
+                        '</td><td>' + json[item].created.toString() +
+                        '</td><td>' + json[item].user.toString() +
+                        '</td>';
+                    refershBody += '</tr>';
+                }
+                $("#All_Ads").html(refershBody);
+            }
+        )
+
+    }
+
+
+    $(
+        getAllMarket()
+    )
+</script>
+
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <!-- Brand -->
     <a class="navbar-brand" href="#">CarMarket</a>
@@ -59,16 +93,23 @@
         </form>
     </div>
 </div>
+<br>
+<br>
 <table class="table table-striped" id="table">
+    <thead>
     <tr>
-        <td width=""></td>
-        <td width=""></td>
-        <td width=""></td>
-        <td width=""></td>
-        <td width=""></td>
-        <td width=""></td>
-        <td width=""></td>
+        <th width="25px">№</th>
+        <th width="155px">Наименование</th>
+        <th width="125px">Город</th>
+        <th width="100px">Цена</th>
+        <th width="150">Фотография</th>
+        <th width="250px">Описание</th>
+        <th width="80px">Дата</th>
+        <th width="100px">Владелец</th>
     </tr>
+    </thead>
+    <tbody id="All_Ads">
+    </tbody>
 </table>
 </body>
 </html>
