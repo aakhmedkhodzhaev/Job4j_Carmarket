@@ -50,6 +50,15 @@
         <url-pattern>/ajax</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>JsonController</servlet-name>
+        <servlet-class>ru.job4j.carmarket.servlet.JsonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>JsonController</servlet-name>
+        <url-pattern>/json</url-pattern>
+    </servlet-mapping>
+
 
     <!-- Errors Block -->
     <error-page>

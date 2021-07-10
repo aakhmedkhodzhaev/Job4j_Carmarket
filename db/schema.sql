@@ -62,7 +62,7 @@ CREATE TABLE j_car(
 	date_of_issue date,
   created_by integer,
 	created_date date DEFAULT CURRENT_TIMESTAMP,
-	update_date date DEFAULT CURRENT_TIMESTAMP,
+	updated_date date DEFAULT CURRENT_TIMESTAMP,
 CONSTRAINT j_brand_fkey FOREIGN KEY (brand_id)
 	References j_brand(id),
 CONSTRAINT j_model_id_fkey FOREIGN KEY (model_id)

@@ -1,5 +1,8 @@
 package ru.job4j.carmarket.model;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -33,10 +36,15 @@ public class Car {
     @Column(name = "created_by")
     private Long createdBy;
 
+    @CreationTimestamp
     @Column(name = "created_date")
     private LocalDateTime createDate;
 
-    // private Set<Driver> drivers = new HashSet<>();
+    @UpdateTimestamp
+    @Column(name="updated_date")
+    private LocalDateTime updatedDate;
+
+// private Set<Driver> drivers = new HashSet<>();
 
     public int getId() {
         return id;
@@ -107,6 +115,15 @@ public class Car {
 
     public void setModel(Model model) {
         this.model = model;
+    }
+
+
+    public LocalDateTime getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(LocalDateTime updatedDate) {
+        this.updatedDate = updatedDate;
     }
 
     @Override
