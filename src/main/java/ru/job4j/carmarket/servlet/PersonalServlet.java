@@ -66,7 +66,6 @@ public class PersonalServlet extends HttpServlet {
             car.setModel(model);
             car.setPrice(iPrice);
             car.setYears(iYear);
-            car.setCreateDate(LocalDateTime.now());
 
             StoreHibernate.getInstance().save(
                     new Market(

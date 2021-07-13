@@ -19,6 +19,9 @@ public class Car {
     @Column(name = "id")
     private int id;
 
+    @Column(name = "user_id")
+    private Long createdBy;
+
     @ManyToOne
     @JoinColumn(name = "brand_id", foreignKey = @ForeignKey(name = "j_brand_id_fk"))
     private Brand brand;
@@ -32,17 +35,6 @@ public class Car {
 
     @Column(name = "years")
     private String years;
-
-    @Column(name = "created_by")
-    private Long createdBy;
-
-    @CreationTimestamp
-    @Column(name = "created_date")
-    private LocalDateTime createDate;
-
-    @UpdateTimestamp
-    @Column(name="updated_date")
-    private LocalDateTime updatedDate;
 
 // private Set<Driver> drivers = new HashSet<>();
 
@@ -78,14 +70,6 @@ public class Car {
         this.createdBy = createdBy;
     }
 
-    public LocalDateTime getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(LocalDateTime createDate) {
-        this.createDate = createDate;
-    }
-
     public Brand getBrand() {
         return brand;
     }
@@ -115,15 +99,6 @@ public class Car {
 
     public void setModel(Model model) {
         this.model = model;
-    }
-
-
-    public LocalDateTime getUpdatedDate() {
-        return updatedDate;
-    }
-
-    public void setUpdatedDate(LocalDateTime updatedDate) {
-        this.updatedDate = updatedDate;
     }
 
     @Override

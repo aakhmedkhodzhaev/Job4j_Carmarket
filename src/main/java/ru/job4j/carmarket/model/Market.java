@@ -1,6 +1,10 @@
 package ru.job4j.carmarket.model;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -32,6 +36,18 @@ public class Market {
 
     @Column(name = "photo_name")
     private String photoname;
+
+    @Column(name = "created_by")
+    private Long createdBy;
+
+    @CreationTimestamp
+    @Column(name = "created_date")
+    private LocalDateTime createDate;
+
+    @UpdateTimestamp
+    @Column(name="updated_date")
+    private LocalDateTime updatedDate;
+
 
     public Market() {
         super();
@@ -112,6 +128,30 @@ public class Market {
         this.photoname = photoname;
     }
 
+    public Long getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Long createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public LocalDateTime getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(LocalDateTime createDate) {
+        this.createDate = createDate;
+    }
+
+    public LocalDateTime getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(LocalDateTime updatedDate) {
+        this.updatedDate = updatedDate;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -130,4 +170,18 @@ public class Market {
 
         return Objects.hash(getId());
     }
+
+    public String toJsonString() {
+        return "{" +
+                "\"id\"" + ":" + id + "," +
+                "\"name\"" + ":" + "\"" + name + "\"," +
+                "\"city\"" + ":" + "\"" + city + "\"" +
+                "\"price\"" + ":" + "\"" + car.getPrice() + "\"," +
+                "\"photo\"" + ":" + "\"" + photoname + "\"" +
+                "\"description\"" + ":" + "\"" + description + "\"," +
+                "\"created\"" + ":" + "\"" + createDate + "\"," +
+                "\"user\"" + ":" + "\"" + user + "\"," +
+                "}";
+    }
+
 }
