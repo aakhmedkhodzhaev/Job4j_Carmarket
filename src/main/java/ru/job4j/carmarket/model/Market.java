@@ -45,7 +45,7 @@ public class Market {
     private LocalDateTime createDate;
 
     @UpdateTimestamp
-    @Column(name="updated_date")
+    @Column(name = "updated_date")
     private LocalDateTime updatedDate;
 
 
@@ -175,12 +175,12 @@ public class Market {
         return "{" +
                 "\"id\"" + ":" + id + "," +
                 "\"name\"" + ":" + "\"" + name + "\"," +
-                "\"city\"" + ":" + "\"" + city + "\"" +
+                "\"city\"" + ":" + "\"" + city.getName() + "\"," +
                 "\"price\"" + ":" + "\"" + car.getPrice() + "\"," +
-                "\"photo\"" + ":" + "\"" + photoname + "\"" +
+                "\"photo\"" + ":" + "\"" + photoname + "\"," +
                 "\"description\"" + ":" + "\"" + description + "\"," +
                 "\"created\"" + ":" + "\"" + createDate + "\"," +
-                "\"user\"" + ":" + "\"" + user + "\"," +
+                "\"user\"" + ":" + "\"" + user.getId() + "\"" +
                 "}";
     }
 

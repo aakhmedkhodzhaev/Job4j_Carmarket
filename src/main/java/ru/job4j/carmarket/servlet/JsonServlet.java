@@ -18,6 +18,8 @@ public class JsonServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/plain");
+        resp.setCharacterEncoding("UTF-8");
         Collection<Market> markets;
         markets = StoreHibernate.getInstance().findAll();
         StringBuilder sb = new StringBuilder();
@@ -34,6 +36,7 @@ public class JsonServlet extends HttpServlet {
 
         PrintWriter writer = resp.getWriter();
         writer.append(sb);
+
         writer.flush();
     }
 
