@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page pageEncoding="cp1251" %>
+<%@ page pageEncoding="UTF-8" %>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 <html lang="en">
 <head>
@@ -132,8 +132,7 @@
                 alert($('#cmPrice').attr('title'));
             } else if (valueg == '') {
                 alert($('#descriptions').attr('title'));
-            }
-            else {
+            } else {
                 result = true;
             }
             return result;
@@ -151,7 +150,7 @@
     <!-- Links -->
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">Главная страница</a>
+            <a class="nav-link" href="<%=request.getContextPath()%>/index.html">Р“Р»Р°РІРЅР°СЏ СЃС‚СЂР°РЅРёС†Р°</a>
         </li>
         <li class="nav-item" style="float: right; text-align: right;">
             <a class="nav-link" type="hidden" value="${user.id}">
@@ -159,7 +158,7 @@
         </li>
         <li class="nav-item" style="float: right; text-align: right;">
             <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp">
-                <c:out value="${user.name}"/> | Выйти</a>
+                <c:out value="${user.name}"/> | Р’С‹Р№С‚Рё</a>
         </li>
     </ul>
 </nav>
@@ -168,70 +167,60 @@
 
     <div class="container" style="padding-top: 20px; padding-bottom: 20px">
         <div class="card-body">
-            <form action="/ajax" method="post" enctype="multipart/form-data">
-                <div class="check-box" align="center">
-                    <td>
-                        <tr>
-                            <input type="file" id="cmPhotoId" name="cmPhotoId"/>
-                        </tr>
-                    </td>
-                </div>
-                </br>
-                <input type="button" class="button" value="Upload" id="but_upload">
-            </form>
-            <form action="/advertisement.do" method="post">
+            <form action="/advertisement.do" method="post" enctype="multipart/form-data">
                 <table width="100%" cellspacing="10px">
                     <tr>
                         <td>
                             <table width="100%">
                                 <tr>
-                                    <td><b>Наименование Объявления:</b></td>
+                                    <td><b>РќР°РёРјРµРЅРѕРІР°РЅРёРµ РћР±СЉСЏРІР»РµРЅРёСЏ:</b></td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input type="text" class="form-control" id="name" name="name"
-                                               title="Название Объявления" placeholder="Название Объявления"/>
+                                        <input type="text" class="form-control" id="name" name="name" value=""
+                                               title="РќР°Р·РІР°РЅРёРµ РћР±СЉСЏРІР»РµРЅРёСЏ" placeholder="РќР°Р·РІР°РЅРёРµ РћР±СЉСЏРІР»РµРЅРёСЏ"/>
                                         <input type="hidden" class="form-control" id="userId" name="userId"
                                                value="${user.id}"/>
                                         </a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><b>Город</b></td>
+                                    <td><b>Р“РѕСЂРѕРґ</b></td>
                                 </tr>
                                 <tr>
                                     <td width="100%">
-                                        <select class="form-control" id="cmCity" name="cmCity" title="Город">
+                                        <select class="form-control" id="cmCity" name="cmCity" title="Р“РѕСЂРѕРґ">
                                         </select>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><b>Марка</b></td>
+                                    <td><b>РњР°СЂРєР°</b></td>
                                 </tr>
                                 <tr>
                                     <td width="100%">
-                                        <select class="form-control" id="cmMark" name="cmMark" title="Марка">
+                                        <select class="form-control" id="cmMark" name="cmMark" title="РњР°СЂРєР°">
                                         </select>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><b>Модель</b></td>
+                                    <td><b>РњРѕРґРµР»СЊ</b></td>
                                 </tr>
                                 <tr>
                                     <td width="100%">
-                                        <select class="form-control" id="cmModel" name="cmModel" title="Модель">
+                                        <select class="form-control" id="cmModel" name="cmModel" title="РњРѕРґРµР»СЊ">
                                         </select>
                                     </td>
                                 </tr>
                                 <tr>
                                     <br>
-                                    <td><b>Описание объявления:</b></td>
+                                    <td><b>РћРїРёСЃР°РЅРёРµ РѕР±СЉСЏРІР»РµРЅРёСЏ:</b></td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <textarea rows="3" class="form-control" id="descriptions" name="descriptions"
-                                                  title="Описание объявления" maxlength="500"
-                                                  placeholder="Максимальная длина 500 символов"></textarea>
+                                                  value=""
+                                                  title="РћРїРёСЃР°РЅРёРµ РѕР±СЉСЏРІР»РµРЅРёСЏ" maxlength="500"
+                                                  placeholder="РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ РґР»РёРЅР° 500 СЃРёРјРІРѕР»РѕРІ"></textarea>
                                     </td>
                                 </tr>
                                 <tr>
@@ -241,13 +230,13 @@
                                                 <td>
                                                     <table>
                                                         <tr>
-                                                            <td><b>Год выпуска</b></td>
+                                                            <td><b>Р“РѕРґ РІС‹РїСѓСЃРєР°</b></td>
                                                         </tr>
                                                         <tr>
                                                             <td>
                                                                 <input type="number" id="cmYear" name="cmYear"
-                                                                       title="Год выпуска машины"
-                                                                       placeholder="Год выпуска машины">
+                                                                       title="Р“РѕРґ РІС‹РїСѓСЃРєР° РјР°С€РёРЅС‹"
+                                                                       placeholder="Р“РѕРґ РІС‹РїСѓСЃРєР° РјР°С€РёРЅС‹">
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -256,12 +245,12 @@
                                                 <td>
                                                     <table>
                                                         <tr>
-                                                            <td><b>Цена</b></td>
+                                                            <td><b>Р¦РµРЅР°</b></td>
                                                         </tr>
                                                         <tr>
                                                             <td>
                                                                 <input type="number" id="cmPrice" name="cmPrice"
-                                                                       title="Цена" placeholder="Цена" width="70px">
+                                                                       title="Р¦РµРЅР°" placeholder="Р¦РµРЅР°" width="70px">
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -270,17 +259,24 @@
                                         </table>
                                     </td>
                                 </tr>
+                                <div class="check-box" align="center">
+                                    <tr>
+                                        <td>
+                                            <input type="file" id="cmPhotoId" name="cmPhotoId"/>
+                                        </td>
+                                    </tr>
+                                </div>
                                 <tr>
                                     <td>
                                         <br>
                                         <button type="submit" class="btn btn-primary" style="float:left;
-                                       margin-right:10px" onclick="return validate();">Принять
+                                       margin-right:10px" onclick="return validate();">РџСЂРёРЅСЏС‚СЊ
                                         </button>
                                     </td>
                                     <td>
                                         <br>
                                         <button type="button" onclick="doCancel();" class="btn btn-danger"
-                                                style="float:right">Отмена
+                                                style="float:right">РћС‚РјРµРЅР°
                                         </button>
                                     </td>
                                 </tr>
