@@ -6,17 +6,68 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Car Market | Home</title>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Car Market</title>
 </head>
 <body>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+%>
+<!-- Optional JavaScript -->
+<!-- jQuery,  Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+<!-- get Items From db -->
+<script>
+    setInterval(getAllMarket, 325000);
+
+    <!-- get All Ads-->
+    function getAllMarket() {
+        var urlGetQuery = './json';
+        $.ajax(urlGetQuery).done(function (data) {
+            var refreshBody = '';
+            console.log(data);
+            var json = JSON.parse(data);
+            for (item in json) {
+                refreshBody += '<tr><td>' + json[item].id.toString() +
+                    '</td><td>' + json[item].name +
+                    '</td><td>' + json[item].city +
+                    '</td><td>' + json[item].price.toString() +
+                    '</td><td><img src="<%=basePath %>load?photo="' + json[item].photo + '\"/>' + json[item].photo +
+                    '</td><td>' + json[item].description +
+                    '</td><td>' + json[item].created.toString() +
+                    '</td><td>' + json[item].user +
+                    '</td>';
+                refreshBody += '</tr>';
+            }
+            $("#All_Ads").html(refreshBody);
+        })
+    }
+
+    $(
+        getAllMarket()
+    )
+</script>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <!-- Brand -->
@@ -66,7 +117,25 @@
         </form>
     </div>
 </div>
-<table class="table table-striped" id="table">
-</table>
+<br>
+<br>
+<div class="row pt-3">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th width="25px">№</th>
+            <th width="155px">Наименование</th>
+            <th width="125px">Город</th>
+            <th width="100px">Цена</th>
+            <th width="150">Фотография</th>
+            <th width="250px">Описание</th>
+            <th width="80px">Дата</th>
+            <th width="100px">Владелец</th>
+        </tr>
+        </thead>
+        <tbody id="All_Ads">
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

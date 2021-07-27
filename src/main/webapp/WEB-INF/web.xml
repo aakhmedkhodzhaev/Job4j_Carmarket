@@ -59,6 +59,15 @@
         <url-pattern>/json</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>LoadController</servlet-name>
+        <servlet-class>ru.job4j.carmarket.servlet.DownloadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoadController</servlet-name>
+        <url-pattern>/load</url-pattern>
+    </servlet-mapping>
+
 
     <!-- Errors Block -->
     <error-page>

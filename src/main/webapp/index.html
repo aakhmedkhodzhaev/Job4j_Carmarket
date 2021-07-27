@@ -41,16 +41,11 @@
                     '</td><td>' + json[item].name +
                     '</td><td>' + json[item].city +
                     '</td><td>' + json[item].price.toString() +
-                    '</td><td style=\"width: 150px;vertical-align: middle\'><img id=\'Images\'' +
-                    'name=\'Images\' style=\'max-width: 150px\'' +
-                    +(item.filename == ''
-                        ?
-                        " src=\"\"\n" : " src=\"Images/" + json[item].photo + "\"\n") +
-                    " class=\"rounded mx-auto d-block\" alt=\"\">"
-                '</td><td>' + json[item].description +
-                '</td><td>' + json[item].created.toString() +
-                '</td><td>' + json[item].user +
-                '</td>';
+                    '</td><td>' + json[item].photo +
+                    '</td><td>' + json[item].description +
+                    '</td><td>' + json[item].created.toString() +
+                    '</td><td>' + json[item].user +
+                    '</td>';
                 refreshBody += '</tr>';
             }
             $("#All_Ads").html(refreshBody);
