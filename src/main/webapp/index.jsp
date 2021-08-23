@@ -44,16 +44,19 @@
     <!-- get All Ads-->
     function getAllMarket() {
         var urlGetQuery = './json';
+        var images;
         $.ajax(urlGetQuery).done(function (data) {
             var refreshBody = '';
             console.log(data);
             var json = JSON.parse(data);
             for (item in json) {
+                images = json[item].photo;
+                console.log(images);
                 refreshBody += '<tr><td>' + json[item].id.toString() +
                     '</td><td>' + json[item].name +
                     '</td><td>' + json[item].city +
-                    '</td><td>' + json[item].price.toString() +
-                    '</td><td><img src="<%=basePath %>load?photo="' + json[item].photo + '\"/>' + json[item].photo +
+                    '</td><td>' + json[item].price +
+                    '</td><td><img src=<%=basePath%>load?photo='+images.toString()+' width="100px" height="100px" />' +
                     '</td><td>' + json[item].description +
                     '</td><td>' + json[item].created.toString() +
                     '</td><td>' + json[item].user +
@@ -99,7 +102,7 @@
                 <select class="form-control" id="cbMark" name="cbMark">
                 </select>
             </div>
-            <div class="form-group form-check">
+       <!-- <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" type="checkbox" id="today"><b>За посление 24 часа</b>
                 </label>
@@ -108,7 +111,7 @@
                 <label class="form-check-label">
                     <input class="form-check-input" type="checkbox" id="pics"><b>С фотографией</b>
                 </label>
-            </div>
+            </div> -->
             <button type="button" class="btn btn-primary" style="float:left;
                                        margin-right:10px" onclick="showData(getFilter());">Поиск
             </button>

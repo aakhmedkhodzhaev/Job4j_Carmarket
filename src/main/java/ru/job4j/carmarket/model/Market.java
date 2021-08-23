@@ -72,6 +72,16 @@ public class Market {
         this.photoname = photoname;
     }
 
+    public Market(String name, String description, User user, Car car, City city, String photoname, Long createdBy) {
+        this.name = name;
+        this.description = description;
+        this.user = user;
+        this.car = car;
+        this.city = city;
+        this.photoname = photoname;
+        this.createdBy = createdBy;
+    }
+
     public int getId() {
         return id;
     }

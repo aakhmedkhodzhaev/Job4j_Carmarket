@@ -49,7 +49,7 @@ public class PersonalServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setHeader("Content-Type", "text/xml; charset=windows-1251");
+        resp.setHeader("Content-Type", "text/xml; charset=UTF-8");
         resp.setContentType("text/html");
         resp.setCharacterEncoding("UTF-8");
 
@@ -62,6 +62,7 @@ public class PersonalServlet extends HttpServlet {
         String iYear = null;
         String iPrice = null;
         String photoname = null;
+        Long createdBy;
 
         try {
             DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -137,6 +138,7 @@ public class PersonalServlet extends HttpServlet {
 
             User user = RegistrationHibernate.getInstance().getById(Long.valueOf(iUser));
             City city = StoreHibernate.getInstance().getByIdCity(Integer.valueOf(iCity));
+            createdBy = user.getId();
 
 
             if (user.getId() == Long.valueOf(iUser)) {
@@ -155,7 +157,8 @@ public class PersonalServlet extends HttpServlet {
                                 user,
                                 car,
                                 city,
-                                photoname
+                                photoname,
+                                createdBy
                         )
                 );
                 resp.sendRedirect(req.getContextPath() + "/advertisement.do");
